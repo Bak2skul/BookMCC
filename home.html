@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script src="./home.js" defer></script>
+    <link rel="stylesheet" href="css/BookMCC.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div id="head-logo">
+                <a href="home.html"><img src="bookMCC1.png" alt=""></a>
+            </div>
+            <div id="log-out">
+                <a href="#">Log out</a>
+            </div>
+        </div><!--end of container-->
+    </header>
+
+    <nav id="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="home.html">My Home</a></li>
+                <li><a href="listings.html">Book Listings</a></li>
+                <li><a href="cart.html">Shopping Cart</a></li>
+                <li><a href="appts.html">Appointments</a></li>
+            </ul>
+
+        </div><!--end of container-->
+    </nav>
+
+
+
+
+
+
+
+
+
+
+    <section id="showcase">
+        <div class="container">
+            <div class="profile">
+                <div id="myListings">
+
+                    <p id="listingsMessage">Hello! Here are your listed books:</p>
+                    <ul id="bookList"></ul>
+                    <p id="noBooksMessage">You do not have any books listed at the moment.</p>
+
+                </div>
+
+
+                <!-- Button to add an item for sale -->
+                <button id="addItemButton" onclick="toggleForm()">Add Item for Sale</button>
+
+                <!-- Form to add a new item -->
+                <form id="addItemForm">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" placeholder="PHP for the Web" required>
+
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" placeholder="Larry Ullman" required>
+
+                    <label for="isbn13">ISBN-13:</label>
+                    <input type="text" id="isbn13" name="isbn13" placeholder="000-0-00-000000-0" required>
+
+                    <label for="isbn10">ISBN-10:</label>
+                    <input type="text" id="isbn10" name="isbn10" placeholder="0-00-000000-0" required>
+
+                    <label for="className">Class Name:</label>
+                    <input type="text" id="className" name="className" placeholder="CSC350" required>
+
+                    <label for="professor">Professor Name:</label>
+                    <input type="text" id="professor" name="professorName" placeholder="Maryam Vatankhah" required>
+
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required>
+
+                    <label for="condition">Condition:</label>
+                    <div class="condition-group">
+                        <input type="radio" id="poorCondition" name="condition" value="poor" checked>
+                        <label for="poorCondition">Poor</label>
+
+                        <input type="radio" id="fairCondition" name="condition" value="fair">
+                        <label for="fairCondition">Fair</label>
+
+                        <input type="radio" id="goodCondition" name="condition" value="good">
+                        <label for="goodCondition">Good</label>
+
+                        <input type="radio" id="excellentCondition" name="condition" value="excellent">
+                        <label for="excellentCondition">Excellent</label>
+                    </div>
+
+                    <label for="photo">Photo:</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+
+                    <button type="submit">Add Item</button>
+                </form>
+
+            </div>
+        </div><!--end of container-->
+
+
+        <footer id="main-footer">
+            <p>Copyright &copy; 2023 BookMCC</p>
+        </footer>
+</body>
+
+</html>

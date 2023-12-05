@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book listings</title>
+    <script src="./home.js" defer></script>
+    <link rel="stylesheet" href="css/BookMCC.css">
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="container">
+            <div id="head-logo">
+                <a href="home.html"><img src="bookMCC1.png" alt=""></a>
+            </div>
+            <div id="log-out">
+                <a href="#">Log out</a>
+            </div>
+        </div><!--end of container-->
+    </header>
+
+    <nav id="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="home.html">My Home</a></li>
+                <li><a href="listings.html">Book Listings</a></li>
+                <li><a href="cart.html">Shopping Cart</a></li>
+                <li><a href="appts.html">Appointments</a></li>
+            </ul>
+        </div><!--end of container-->
+    </nav>
+
+    <section id="showcase">
+        <div class="container">
+            <div class="item-list">
+
+                <form id="addItemForm">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" id="itemName" name="itemName" required>
+
+                    <label for="itemPrice">Item Price:</label>
+                    <input type="text" id="itemPrice" name="itemPrice" required>
+
+                    <button type="submit">Add Item</button>
+                </form>
+
+            </div>
+        </div><!--end of container-->
+
+
+        <footer id="main-footer">
+            <p>Copyright &copy; 2023 BookMCC</p>
+        </footer>
+</body>
+
+</html>
+
+<!-- <?php
+
+// Your database connection logic here
+
+// Fetch books from the database
+$query = "SELECT * FROM books";
+$result = mysqli_query($your_db_connection, $query);
+
+if ($result) {
+    $books = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $books[] = $row;
+    }
+    
+    echo json_encode($books);
+} else {
+    echo json_encode(['error' => 'Error fetching books from the database']);
+}
+
+// Close the database connection
+mysqli_close($your_db_connection);
+?> -->
+
+<!-- ---------------------------------- -->
+<!-- <?php
+
+// Your database connection logic here
+
+// Retrieve the posted data
+$data = json_decode(file_get_contents("php://input"));
+
+if (isset($data->title, $data->author, $data->price, $data->image)) {
+    // Sanitize and validate the input as needed
+    $title = mysqli_real_escape_string($your_db_connection, $data->title);
+    $author = mysqli_real_escape_string($your_db_connection, $data->author);
+    $price = mysqli_real_escape_string($your_db_connection, $data->price);
+    $image = mysqli_real_escape_string($your_db_connection, $data->image);
+
+    // Insert the new book into the database
+    $query = "INSERT INTO books (title, author, price, image) VALUES ('$title', '$author', '$price', '$image')";
+    $result = mysqli_query($your_db_connection, $query);
+
+    if ($result) {
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Error adding book to the database']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid input']);
+}
+
+// Close the database connection
+mysqli_close($your_db_connection);
+?> -->
