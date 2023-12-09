@@ -1,0 +1,22 @@
+services:
+  web:
+    image: qingquanli/bookmcc:latest
+    container_name: bookmcc # name the container
+    ports:
+      - "8002:80" # host:container
+    depends_on:
+      - db
+    restart: always # always restart the container if it stops
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always # always restart the container if it stops
+
+volumes:
+  db_data: {}
