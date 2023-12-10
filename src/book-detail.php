@@ -90,8 +90,11 @@ if (isset($_GET['book_id'])) {
                     . htmlspecialchars($book['Username'])
                     . " on "
                     // . htmlspecialchars($book['PostTime'])
-                    // don't display seconds
-                    . substr($book['PostTime'], 0, 16)
+                    // . substr($book['PostTime'], 0, 16) // don't display seconds
+                    // class='post-local-time' is used by the JavaScript code to find the elements to convert
+                    // data-utc-time is a custom attribute to store the UTC time
+                    . "<span class='post-local-time' data-utc-time='" . htmlspecialchars($book['PostTime']) . "'>"
+                    . htmlspecialchars($book['PostTime']) . " UTC</span>"
                     . "</p>";
 
                 // Display comments
@@ -107,12 +110,12 @@ if (isset($_GET['book_id'])) {
                             . ":</strong> "
                             . htmlspecialchars($comment['CommentText'])
                             // . htmlspecialchars($comment['CommentTime'])
-                            // Add parentheses, color to gray, don't display seconds
-                            . "<span style='color: gray'>"
-                            . " ("
-                            . substr($comment['CommentTime'], 0, 16)
-                            . ")"
-                            . "</span>"
+                            // . substr($comment['CommentTime'], 0, 16) // don't display seconds
+                            // class='comment-local-time' is used by the JavaScript code to find the elements to convert
+                            // data-utc-time is a custom attribute to store the UTC time
+                            . "<span style='color: gray' class='comment-local-time' data-utc-time=
+                                '" . htmlspecialchars($comment['CommentTime']) . "'>"
+                            . " (" . htmlspecialchars($comment['CommentTime']) . " UTC)</span>"
                             . "</div>";
                     }
                 }
@@ -142,6 +145,37 @@ if (isset($_GET['book_id'])) {
 
         ?>
     </div>
+
+    <!-- The JavaScript code waits for the DOM to be fully loaded, then finds
+    each element with the local-time class. It reads the UTC time from the
+    data-utc-time attribute, converts it to a JavaScript Date object (which
+    automatically converts it to the user's local time zone), formats it to
+    a local string, and updates the content of the element. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.post-local-time').forEach(function(el) {
+                var utcTime = el.getAttribute('data-utc-time');
+                // var localTime = new Date(utcTime + 'Z').toLocaleString();
+                // el.textContent = localTime;
+                // Don't display seconds
+                var localTime = new Date(utcTime + 'Z');
+                var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                // undefined is passed as the first argument to use the default locale
+                el.textContent = localTime.toLocaleString(undefined, options);
+            });
+
+            document.querySelectorAll('.comment-local-time').forEach(function(el) {
+                var utcTime = el.getAttribute('data-utc-time');
+                // var localTime = new Date(utcTime + 'Z').toLocaleString();
+                // el.textContent = ' (' + localTime + ')';
+                // Don't display seconds
+                var localTime = new Date(utcTime + 'Z');
+                var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                // undefined is passed as the first argument to use the default locale
+                el.textContent = ' (' + localTime.toLocaleString(undefined, options) + ')';
+            });
+        });
+    </script>
     
 </body>
 </html>
