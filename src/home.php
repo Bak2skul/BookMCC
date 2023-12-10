@@ -45,8 +45,11 @@ $result = mysqli_query($dbc, $query);
                     . htmlspecialchars($row['Username'])
                     . " on "
                     // . htmlspecialchars($row['PostTime'])
-                    // don't display seconds
-                    . substr($row['PostTime'], 0, 16)
+                    // . substr($row['PostTime'], 0, 16) // don't display seconds
+                    // class='post-local-time' is used by the JavaScript code to find the elements to convert
+                    // data-utc-time is a custom attribute to store the UTC time
+                    . "<span class='post-local-time' data-utc-time='" . htmlspecialchars($row['PostTime']) . "'>"
+                    . htmlspecialchars($row['PostTime']) . " UTC</span>"
                     . "</p>";
                 echo "<a href='book-detail.php?book_id=" . $row['BookID'] . "' class='btn btn-primary'>View Details</a>";
                 echo "</div>";
@@ -57,6 +60,27 @@ $result = mysqli_query($dbc, $query);
         }
         ?>
     </div>
+
+    <!-- The JavaScript code waits for the DOM to be fully loaded, then finds
+    each element with the post-local-time class. It reads the UTC time from the
+    data-utc-time attribute, converts it to a JavaScript Date object (which
+    automatically converts it to the user's local time zone), formats it to
+    a local string, and updates the content of the element. -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.post-local-time').forEach(function(el) {
+                var utcTime = el.getAttribute('data-utc-time');
+                // var localTime = new Date(utcTime + 'Z').toLocaleString();
+                // el.textContent = localTime;
+                // Don't display seconds
+                var localTime = new Date(utcTime + 'Z');
+                var options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                // undefined is passed as the first argument to use the default locale
+                el.textContent = localTime.toLocaleString(undefined, options);
+            });
+        });
+    </script>
+
     
   </body>
 </body>
