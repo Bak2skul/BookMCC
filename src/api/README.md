@@ -1,0 +1,1 @@
+This folder has beeb deprecated, because this project does NOT use the front-end and back-end separation development approach.
