@@ -2,8 +2,7 @@ services:
   web:
     build: .
     ports:
-      # - "80:80" # host:container
-      - "8002:80" # host:container
+      - "80:80" # host:container
     # Mount the src directory to the container
     # This allows us to edit the code on the host machine
     # and see the changes reflected in the container
