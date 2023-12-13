@@ -49,7 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     . "<a href='home.php'>Go to home page</a>"
                     . "</div>";
             } else {
-                echo "Error: " . mysqli_error($dbc);
+                echo "<div class='alert alert-danger' role='alert'>"
+                    . "Error: " . mysqli_error($dbc)
+                    . "</div>";
             }
         }
     }
@@ -110,8 +112,8 @@ ob_end_flush();
                 ></textarea>
             </div>
             <div class="mb-3">
-                <label>Book image (size < 1MB)</label>
-                <input type="file" name="image" class="form-control">
+                <label>Book image (size < 1MB) *</label>
+                <input type="file" name="image" class="form-control" required accept="image/*" />
             </div>
             <button type="submit" class="btn btn-primary">Post</button>
         </form>
