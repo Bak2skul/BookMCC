@@ -83,6 +83,7 @@ if (isset($_GET['book_id'])) {
                     echo "<img
                         src='data:image/jpeg;base64,".base64_encode($book['Image'])."'
                         class='img-thumbnail'
+                        style='width: 350px;'
                     />";
                 }
                 // Display username and post time
