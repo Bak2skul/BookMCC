@@ -1,6 +1,6 @@
 <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light"> -->
 <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark"> -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: powderblue;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: powderblue;">
     <div class="container-md">
         <!-- <a class="navbar-brand mb-0 h1" href="/">BookMCC · BMCC Book Exchange</a> -->
         <a class="navbar-brand mb-0 h1" href="home.php">

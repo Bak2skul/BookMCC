@@ -44,9 +44,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$userID', '$title', '$author', '$isbn13', '$isbn10', '$courseName', '$note', '$imageContent')";
 
             if (mysqli_query($dbc, $query)) {
-                echo "Book posted successfully. <a href='home.php'>Go to home page</a>";
+                echo "<div class='alert alert-success' role='alert'>"
+                    . "Book posted successfully."
+                    . "<a href='home.php'>Go to home page</a>"
+                    . "</div>";
             } else {
-                echo "Error: " . mysqli_error($dbc);
+                echo "<div class='alert alert-danger' role='alert'>"
+                    . "Error: " . mysqli_error($dbc)
+                    . "</div>";
             }
         }
     }
@@ -87,7 +92,7 @@ ob_end_flush();
                 <input type="text" name="author" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label>ISBN13</label>
+                <label>ISBN13 (13 numbers, no dashes)</label>
                 <input type="text" name="isbn13" class="form-control">
             </div>
             <div class="mb-3">
@@ -107,8 +112,8 @@ ob_end_flush();
                 ></textarea>
             </div>
             <div class="mb-3">
-                <label>Book image (size < 1MB)</label>
-                <input type="file" name="image" class="form-control">
+                <label>Book image (size < 1MB) *</label>
+                <input type="file" name="image" class="form-control" required accept="image/*" />
             </div>
             <button type="submit" class="btn btn-primary">Post</button>
         </form>
